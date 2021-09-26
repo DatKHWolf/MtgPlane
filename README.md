@@ -14,7 +14,7 @@ Der Zugriff auf die Karten soll durch die Scryfall API erfolgen.
 ### Erweiterungen
 - **Android/Apfel** den Prototyp (Website) in einer Handyapp umsetzen
 - **Würfel** werfen in der App in "echt" mit einem animierten Würfel 
-- **Login** alle Spieler die in einem Spiel eingelogt sind können die aktive Plane sehen
+- **Login** alle Spieler die in einem Spiel eingeloggt sind können die aktive Plane sehen
 - **moving on Planes** es wird eine Ebene aus Planechasekarten ausgelegt auf der man sich bei entsprechendem Würfelwurf bewegen kann 
 - **stats** braucht kein Mensch
 
