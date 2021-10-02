@@ -1,10 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>MTG Planechase</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-</body>
-</html>
+{% block head %}
+<title>MTG Planechase</title>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <h1 style="text-align: center">All Planechase Cards</h1>
+    {% if cards|length < 1 %}
+        <h4 style="text-align: center">There are no Cards.</h4>
+    {% else %}
+    {% for card in cards %}
+    <h4>{{ card.name }}</h4>
+    <p class="oracle_text">{{ card.text }}</p>
+    {% endfor %}
+    {% endif %}
+</div>
+{% endblock %}

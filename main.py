@@ -1,10 +1,8 @@
-from flask import Flask
-from flask import request
-import json
+from flask import Flask, render_template, url_for
 import requests
 
 app = Flask(__name__)
-unsere_liste = []
+my_list = []
 
 class Card:
     def __init__(self, name, text, image, rules):
@@ -21,21 +19,20 @@ class Card:
     def print_image(self):
         print(self.image)
 
+@app.route("/")
 def get_planes():
     url = 'https://api.scryfall.com/cards/search?q=t%3Aplane'
-    res = requests.get(url)
-    card_list = res.json()['data']
-    for x in card_list:
-        karte = Card((x['name']), x['oracle_text'], x['image_uris']['large'], x['rulings_uri'])
+    req = requests.get(url)
+    card_list = req.json()['data']
+    for card in card_list:
+        plane = Card((card['name']), card['oracle_text'], card['image_uris']['border_crop'], card['rulings_uri'])
+        # TODO: Karte in DB speichern
+        my_list.append(plane)
+    return render_template('index.html', cards = my_list)
 
-        unsere_liste.append(karte)
-    return res.json()
-
-get_planes()
-
-for x in unsere_liste:
-    x.print_name()
-    x.print_text()
-    x.print_image()
+# for x in my_list:
+#     x.print_name()
+#     x.print_text()
+#     x.print_image()
 if __name__ == '__main__':
     app.run()
