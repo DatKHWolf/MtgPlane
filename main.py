@@ -4,7 +4,7 @@ import json
 import requests
 
 app = Flask(__name__)
-unsere_liste=[]
+unsere_liste = []
 
 class Card:
     def __init__(self, name, text, image, rules):
@@ -13,7 +13,7 @@ class Card:
         self.image=image
         self.rules=rules
 
-
+# Testen
     def print_name(self):
         print(self.name)
     def print_text(self):
@@ -26,12 +26,13 @@ def get_planes():
     res = requests.get(url)
     card_list = res.json()['data']
     for x in card_list:
-        karte= Card((x['name']), x['oracle_text'], x['image_uris']['large'], x['rulings_uri'])
+        karte = Card((x['name']), x['oracle_text'], x['image_uris']['large'], x['rulings_uri'])
 
         unsere_liste.append(karte)
     return res.json()
 
 get_planes()
+
 for x in unsere_liste:
     x.print_name()
     x.print_text()
