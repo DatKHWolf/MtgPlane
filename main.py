@@ -1,8 +1,11 @@
 from flask import Flask, render_template, url_for
 import requests
+import random
+from CardList import cardlist
+
 
 app = Flask(__name__)
-my_list = []
+my_list = cardlist([])
 
 class Card:
     def __init__(self, name, text, image, rules):
@@ -27,12 +30,9 @@ def get_planes():
     for card in card_list:
         plane = Card((card['name']), card['oracle_text'], card['image_uris']['border_crop'], card['rulings_uri'])
         # TODO: Karte in DB speichern
-        my_list.append(plane)
-    return render_template('index.html', cards = my_list)
+        my_list.addcard(plane)
+        my_list.shuffle()
+    return render_template('index.html', cards = my_list.list)
 
-# for x in my_list:
-#     x.print_name()
-#     x.print_text()
-#     x.print_image()
 if __name__ == '__main__':
     app.run()
