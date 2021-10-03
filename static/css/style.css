@@ -1,0 +1,35 @@
+body {
+
+    margin: 0;
+    padding: 0;
+    font-family: Verdana, sans-serif;
+    color: #444;
+    background-color: #AAA;
+}
+h2 {
+    margin-top: 0;
+    padding-top: 0;
+}
+img.crop {
+    width: 335px;
+    height: 487px;
+    transform: translate(0px, -76px) rotate(90deg);
+}
+.center {
+    padding: 20px;
+    min-height: 335px;
+    margin: auto;
+    width: 60%;
+}
+
+.oracle_text {
+
+}
+.text {
+
+}
+.image {
+    width: 487px;
+    height: 335px;
+    float: left;
+}
