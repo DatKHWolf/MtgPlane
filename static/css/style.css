@@ -1,35 +1,27 @@
 body {
-
     margin: 0;
     padding: 0;
     font-family: Verdana, sans-serif;
     color: #444;
     background-color: #AAA;
 }
-h2 {
-    margin-top: 0;
-    padding-top: 0;
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
 }
-img.crop {
-    width: 335px;
-    height: 487px;
-    transform: translate(0px, -76px) rotate(90deg);
+img.rotate {
+    max-width: 100vh;
+    margin-top: -152px; /* (Höhe - Breite) / 2 */
+    margin-bottom: -152px;
+    transform: rotate(90deg);
 }
-.center {
-    padding: 20px;
-    min-height: 335px;
+.content {
+    padding: 10px;
     margin: auto;
-    width: 60%;
+    text-align: center;
 }
-
-.oracle_text {
-
-}
-.text {
-
-}
-.image {
-    width: 487px;
-    height: 335px;
-    float: left;
+.card {
+    margin-top: 50px;
 }
