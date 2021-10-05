@@ -2,6 +2,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: Verdana, sans-serif;
+    font-size: 1.2em;
     color: #444;
     background-color: #AAA;
 }
@@ -9,7 +10,6 @@ img {
   display: block;
   margin-left: auto;
   margin-right: auto;
-
 }
 img.rotate {
     max-width: 100vh;
@@ -23,5 +23,8 @@ img.rotate {
     text-align: center;
 }
 .card {
-    margin-top: 50px;
+    margin-top: 75px;
+}
+.text {
+    padding-bottom: 25px;
 }

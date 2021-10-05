@@ -2,13 +2,12 @@ import random
 
 
 class CardList(list):
-    def __init__(self, mylist):
+    def __init__(self, my_list):
         super().__init__()
-        self.list = mylist
+        self.list = my_list
 
     def shuffle(self):
         random.shuffle(self.list)
 
-    def addcard(self, card):
+    def add_card(self, card):
         self.list.append(card)
-

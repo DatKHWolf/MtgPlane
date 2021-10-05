@@ -6,7 +6,6 @@ class Card:
         self.image = image
         self.rules = rules
 
-    # Testen
     def print_name(self):
         print(self.name)
 
