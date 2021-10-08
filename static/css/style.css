@@ -12,7 +12,6 @@ img {
   margin-right: auto;
 }
 img.rotate {
-    max-width: 100vh;
     margin-top: -152px; /* (Höhe - Breite) / 2 */
     margin-bottom: -152px;
     transform: rotate(90deg);

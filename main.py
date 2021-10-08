@@ -6,36 +6,41 @@ import requests
 
 app = Flask(__name__)
 
-SCRYFALL_PLANES_URL = 'https://api.scryfall.com/cards/search?q=t%3Aplane'
+SCRYFALL_PLANES_URL = 'https://api.scryfall.com/cards/search?q=type%3Aphenomenon+OR+type%3Aplane'
 ORACLE_SPLIT_PHRASE = 'Whenever you roll {CHAOS}'
 
-# Hole alle Karten mit typ:plane von Scryfall und pack sie in 'ne Liste
-my_planes = CardList([])
 req = requests.get(SCRYFALL_PLANES_URL)
-card_list = req.json()['data']
+scryfall_list = req.json()['data']
+my_planes = CardList([])
 
-# Speichere für jede Karte nur die relevanten Infos ab
-for card in card_list:
+for card in scryfall_list:
     name = (card['name'])
+    type_line = (card['type_line'])
     text = (card['oracle_text'])
-    oracle_text = text.split(ORACLE_SPLIT_PHRASE)[0]
-    chaos_text = ORACLE_SPLIT_PHRASE + text.split(ORACLE_SPLIT_PHRASE)[1]
     image = (card['image_uris']['border_crop'])
     rulings = card['rulings_uri']
 
-    plane = Card(name, oracle_text, chaos_text, image, rulings)
+    if card['type_line'] == 'Phenomenon':
+        oracle_text = text
+        chaos_text = ''
+    else:
+        oracle_text = text.split(ORACLE_SPLIT_PHRASE)[0]
+        chaos_text = ORACLE_SPLIT_PHRASE + text.split(ORACLE_SPLIT_PHRASE)[1]
+
+    plane = Card(name, type_line, oracle_text,
+                 chaos_text, image, rulings)
     my_planes.add_card(plane)
 
 
 @app.route("/")
 def show_planes():
-    return render_template('index.html', cards=my_planes)
+    return render_template('index.html', cards=my_planes.list)
 
 
 @app.route("/shuffle")
 def shuffle():
     my_planes.shuffle()
-    return render_template('index.html', cards=my_planes)
+    return render_template('index.html', cards=my_planes.list)
 
 
 if __name__ == '__main__':
