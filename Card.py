@@ -6,15 +6,3 @@ class Card:
         self.chaos_text = chaos_text
         self.image = image
         self.rules = rules
-
-    def print_name(self):
-        print(self.name)
-
-    def print_chaos_text(self):
-        print(self.chaos_text)
-
-    def print_oracle_text(self):
-        print(self.oracle_text)
-
-    def print_image(self):
-        print(self.image)

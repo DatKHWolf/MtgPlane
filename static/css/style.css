@@ -7,9 +7,9 @@ body {
     background-color: #AAA;
 }
 img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 img.rotate {
     margin-top: -152px; /* (Höhe - Breite) / 2 */

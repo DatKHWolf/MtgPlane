@@ -6,6 +6,8 @@ import requests
 
 app = Flask(__name__)
 
+# Als init auslagern ...
+
 SCRYFALL_PLANES_URL = 'https://api.scryfall.com/cards/search?q=type%3Aphenomenon+OR+type%3Aplane'
 ORACLE_SPLIT_PHRASE = 'Whenever you roll {CHAOS}'
 
@@ -17,7 +19,7 @@ for card in scryfall_list:
     name = (card['name'])
     type_line = (card['type_line'])
     text = (card['oracle_text'])
-    image = (card['image_uris']['border_crop'])
+    image = (card['image_uris'])     # png, border_crop, art_crop, large, normal, small
     rulings = card['rulings_uri']
 
     if card['type_line'] == 'Phenomenon':

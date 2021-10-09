@@ -1,9 +1,8 @@
 import random
 
 
-class CardList(list):
+class CardList:
     def __init__(self, my_list):
-        super().__init__()
         self.list = my_list
 
     def shuffle(self):
