@@ -1,37 +1,47 @@
-from flask import Flask, render_template, url_for
-import requests
-import random
-from CardList import cardlist
+from flask import Flask, render_template
+from CardList import CardList
 from Card import Card
-
+import requests
 
 app = Flask(__name__)
 
+# Als init auslagern ...
+
+SCRYFALL_PLANES_URL = 'https://api.scryfall.com/cards/search?q=type%3Aphenomenon+OR+type%3Aplane'
+ORACLE_SPLIT_PHRASE = 'Whenever you roll {CHAOS}'
+
+req = requests.get(SCRYFALL_PLANES_URL)
+scryfall_list = req.json()['data']
+my_planes = CardList([])
+
+for card in scryfall_list:
+    name = (card['name'])
+    type_line = (card['type_line'])
+    text = (card['oracle_text'])
+    image = (card['image_uris'])     # png, border_crop, art_crop, large, normal, small
+    rulings = card['rulings_uri']
+
+    if card['type_line'] == 'Phenomenon':
+        oracle_text = text
+        chaos_text = ''
+    else:
+        oracle_text = text.split(ORACLE_SPLIT_PHRASE)[0]
+        chaos_text = ORACLE_SPLIT_PHRASE + text.split(ORACLE_SPLIT_PHRASE)[1]
+
+    plane = Card(name, type_line, oracle_text,
+                 chaos_text, image, rulings)
+    my_planes.add_card(plane)
+
 
 @app.route("/")
-def get_planes():
-    my_list = cardlist([])
-    url = 'https://api.scryfall.com/cards/search?q=t%3Aplane'
-    req = requests.get(url)
-    card_list = req.json()['data']
-    split_phrase = 'Whenever you roll {CHAOS}'
+def show_planes():
+    return render_template('index.html', cards=my_planes.list)
 
-    for card in card_list:
 
-        name = (card['name'])
-        text = (card['oracle_text'])
-        oracle_text = text.split(split_phrase)[0]
-        chaos_text = split_phrase + text.split(split_phrase)[1]
-        image = (card['image_uris']['border_crop'])
-        rulings = card['rulings_uri']
-
-        plane = Card(name, oracle_text, chaos_text, image, rulings)
-        my_list.addcard(plane)
-        my_list.shuffle()
-
-        # TODO: Karte in DB speichern
-
-    return render_template('index.html', cards=my_list.list)
+@app.route("/shuffle")
+def shuffle():
+    my_planes.shuffle()
+    return render_template('index.html', cards=my_planes.list)
 
 
 if __name__ == '__main__':
