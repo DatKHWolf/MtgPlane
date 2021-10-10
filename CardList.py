@@ -12,11 +12,14 @@ class CardList:
     def add_card(self, card):
         self.list.append(card)
 
+    def current_card(self):
+        return self.list[self.list_position]
+
     def next_card(self):
         self.list_position += 1
         # print(self.list_position)
         return self.list[self.list_position]
-    # @TODO: Index out of bounds abfangen
+    # TODO: Index out of bounds abfangen
 
     def prev_card(self):
         self.list_position -= 1

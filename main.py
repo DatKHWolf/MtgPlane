@@ -39,6 +39,9 @@ my_planes.shuffle()
 def start_screen():
     return render_template('index.html')
 
+@app.route("/play")
+def play():
+    return render_template('play.html', card=my_planes.current_card())
 
 @app.route("/allcards")
 def show_planes():
@@ -47,12 +50,12 @@ def show_planes():
 
 @app.route("/nextcard")
 def next_card():
-    return render_template('index.html', card=my_planes.next_card())
+    return render_template('play.html', card=my_planes.next_card())
 
 
 @app.route("/prevcard")
 def prev_card():
-    return render_template('index.html', card=my_planes.prev_card())
+    return render_template('play.html', card=my_planes.prev_card())
 
 
 if __name__ == '__main__':
