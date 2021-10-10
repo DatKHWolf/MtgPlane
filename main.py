@@ -32,16 +32,27 @@ for card in scryfall_list:
                  chaos_text, image, rulings)
     my_planes.add_card(plane)
 
+my_planes.shuffle()
+# my_planes.print_list()
 
 @app.route("/")
+def start_screen():
+    return render_template('index.html')
+
+
+@app.route("/allcards")
 def show_planes():
-    return render_template('index.html', cards=my_planes.list)
+    return render_template('allcards.html', cards=my_planes.list)
 
 
-@app.route("/shuffle")
-def shuffle():
-    my_planes.shuffle()
-    return render_template('index.html', cards=my_planes.list)
+@app.route("/nextcard")
+def next_card():
+    return render_template('index.html', card=my_planes.next_card())
+
+
+@app.route("/prevcard")
+def prev_card():
+    return render_template('index.html', card=my_planes.prev_card())
 
 
 if __name__ == '__main__':

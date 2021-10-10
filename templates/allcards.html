@@ -6,17 +6,15 @@
 
 {% block body %}
 <div class="content">
-    <h1>Current Planechase Card</h1>
-    {% if not card %}
+    <h1>All Planechase Cards</h1>
+    {% if cards|length < 1 %}
         <h4>There are no Cards.</h4>
     {% else %}
-        <form action="/prevcard">
-            <button>Prev Card</button>
+        <h4>{{ cards|length }} Cards.</h4>
+        <form action="/shuffle">
+            <button>Shuffle Cards</button>
         </form>
-        <form action="/nextcard">
-            <button>Next Card</button>
-        </form>
-
+    {% for card in cards %}
     <div class="card">
         <div class="text">
             <h2>{{ card.name }}</h2>
@@ -28,6 +26,7 @@
             <img class="rotate" src="{{ card.image['border_crop'] }}">
         </div>
     </div>
+    {% endfor %}
     {% endif %}
 </div>
 {% endblock %}
