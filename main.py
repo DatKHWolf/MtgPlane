@@ -35,25 +35,25 @@ for card in scryfall_list:
 my_planes.shuffle()
 # my_planes.print_list()
 
-@app.route("/")
+@app.route("/", methods=['GET'])
 def start_screen():
     return render_template('index.html')
 
-@app.route("/play")
+@app.route("/play", methods=['GET'])
 def play():
     return render_template('play.html', card=my_planes.current_card())
 
-@app.route("/allcards")
+@app.route("/allcards", methods=['GET'])
 def show_planes():
     return render_template('allcards.html', cards=my_planes.list)
 
 
-@app.route("/nextcard")
+@app.route("/nextcard", methods=['GET'])
 def next_card():
     return render_template('play.html', card=my_planes.next_card())
 
 
-@app.route("/prevcard")
+@app.route("/prevcard", methods=['GET'])
 def prev_card():
     return render_template('play.html', card=my_planes.prev_card())
 
