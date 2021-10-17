@@ -1,6 +1,7 @@
 from flask import Flask, render_template
 from CardList import CardList
 from Card import Card
+from random import randint
 import requests
 
 app = Flask(__name__)
@@ -47,15 +48,18 @@ def play():
 def show_planes():
     return render_template('allcards.html', cards=my_planes.list)
 
-
 @app.route("/nextcard", methods=['POST', 'GET'])
 def next_card():
     return render_template('play.html', card=my_planes.next_card())
 
-
 @app.route("/prevcard", methods=['POST', 'GET'])
 def prev_card():
     return render_template('play.html', card=my_planes.prev_card())
+
+@app.route("/dice", methods=['POST'])
+def roll_dice():
+    value = randint(1, 6)       #Planechase Würfel..
+    return render_template('play.html', result=value, card=my_planes.current_card())
 
 
 if __name__ == '__main__':
