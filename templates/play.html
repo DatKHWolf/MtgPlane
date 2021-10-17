@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 
 {% block head %}
+<link href="{{ url_for('static', filename='css/dice.min.css') }}" rel="stylesheet" type="text/css" />
+
 <title>MTG Planechase</title>
 {% endblock %}
 
@@ -32,17 +34,37 @@
         <h4>There are no Cards.</h4>
     {% endif %}
 
-    <form action="/dice">
-        <button class="btn">
-            {% if not result %}
-                roll
-            {% else %}
-                {{ result }}
-            {% endif %}
-        </button>
-    </form>
+    <!-- Dice -->
+    <div class="dice__scene" id="dice__btn">
+      <div id="dice__cube" class="show-front">
+        <div class="dice__side dice__side--front"></div>
+    		<div class="dice__side dice__side--back"></div>
+    		<div class="dice__side dice__side--right"></div>
+    		<div class="dice__side dice__side--left"></div>
+    		<div class="dice__side dice__side--top"></div>
+    		<div class="dice__side dice__side--bottom"></div>
+      </div>
+    </div>
+
+    <audio preload="auto" id="dice__audio">
+    	<source src="{{ url_for('static', filename='assets/sounds/dice-sound.mp3') }}" />
+    </audio>
+    <!-- /Dice -->
+
+<!--    <form action="/dice">-->
+<!--        <button class="btn">-->
+<!--            {% if not result %}-->
+<!--                roll-->
+<!--            {% else %}-->
+<!--                {{ result }}-->
+<!--            {% endif %}-->
+<!--        </button>-->
+<!--    </form>-->
     <form action="/">
         <button>End Game</button>
     </form>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+<script src="{{ url_for('static', filename='js/dice.js') }}"></script>
 {% endblock %}
