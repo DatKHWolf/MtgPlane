@@ -20,49 +20,51 @@
         <div class="card_img">
             <img src="{{ card.image['border_crop'] }}">
         </div>
-        <div class="card_nav">
-            <form action="/prevcard">
-                <button class="btn btn_prev"><<</button>
-            </form>
-            <form action="/nextcard">
-                <button class="btn btn_next">>></button>
+        <div class="exit">
+            <form action="/">
+                <button class="btn btn_small">X</button>
             </form>
         </div>
+    </div>
+
+    <div class="w3-row">
+        <div class="w3-col s4 w3-center">
+            <form action="/prevcard">
+                <button class="btn">&lt;</button>
+            </form>
+        </div>
+        <div class="w3-col s4 w3-center">
+
+                <!-- Dice -->
+                <div class="dice__scene" id="dice__btn">
+                  <div id="dice__cube" class="show-front">
+                    <div class="dice__side dice__side--front"></div>
+                        <div class="dice__side dice__side--back"></div>
+                        <div class="dice__side dice__side--right"></div>
+                        <div class="dice__side dice__side--left"></div>
+                        <div class="dice__side dice__side--top"></div>
+                        <div class="dice__side dice__side--bottom"></div>
+                  </div>
+                </div>
+
+                <audio preload="auto" id="dice__audio">
+                    <source src="{{ url_for('static', filename='assets/sounds/dice-sound.mp3') }}" />
+                </audio>
+                <!-- /Dice -->
+
+        </div>
+        <div class="w3-col s4 w3-center">
+            <form action="/nextcard">
+                <button class="btn">&gt;</button>
+            </form>
+        </div>
+
     </div>
 
     {% else %}
         <h4>There are no Cards.</h4>
     {% endif %}
 
-    <!-- Dice -->
-    <div class="dice__scene" id="dice__btn">
-      <div id="dice__cube" class="show-front">
-        <div class="dice__side dice__side--front"></div>
-    		<div class="dice__side dice__side--back"></div>
-    		<div class="dice__side dice__side--right"></div>
-    		<div class="dice__side dice__side--left"></div>
-    		<div class="dice__side dice__side--top"></div>
-    		<div class="dice__side dice__side--bottom"></div>
-      </div>
-    </div>
-
-    <audio preload="auto" id="dice__audio">
-    	<source src="{{ url_for('static', filename='assets/sounds/dice-sound.mp3') }}" />
-    </audio>
-    <!-- /Dice -->
-
-<!--    <form action="/dice">-->
-<!--        <button class="btn">-->
-<!--            {% if not result %}-->
-<!--                roll-->
-<!--            {% else %}-->
-<!--                {{ result }}-->
-<!--            {% endif %}-->
-<!--        </button>-->
-<!--    </form>-->
-    <form action="/">
-        <button>End Game</button>
-    </form>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
