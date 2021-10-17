@@ -16,7 +16,6 @@ body {
     overflow: hidden;
 }
 .content {
-border: 1px solid red;
     margin: auto;
     text-align: center;
     height: 90vh;

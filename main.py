@@ -56,7 +56,7 @@ def next_card():
 def prev_card():
     return render_template('play.html', card=my_planes.prev_card())
 
-@app.route("/dice", methods=['POST'])
+@app.route("/dice")
 def roll_dice():
     dice_value = randint(1, 6)       #Planechase Würfel..
     return render_template('play.html', card=my_planes.current_card(), result=dice_value)
