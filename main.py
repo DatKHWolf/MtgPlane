@@ -44,15 +44,15 @@ def start_screen():
 def play():
     return render_template('play.html', card=my_planes.current_card())
 
-@app.route("/allcards", methods=['POST', 'GET'])
+@app.route("/allcards", methods=['GET'])
 def show_planes():
     return render_template('allcards.html', cards=my_planes.list)
 
-@app.route("/nextcard", methods=['POST', 'GET'])
+@app.route("/nextcard", methods=['GET'])
 def next_card():
     return render_template('play.html', card=my_planes.next_card())
 
-@app.route("/prevcard", methods=['POST', 'GET'])
+@app.route("/prevcard", methods=['GET'])
 def prev_card():
     return render_template('play.html', card=my_planes.prev_card())
 
