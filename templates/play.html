@@ -6,19 +6,7 @@
 
 {% block body %}
 <div class="content">
-    <h1>Current Planechase Card</h1>
-    {% if not card %}
-        <h4>There are no Cards.</h4>
-    {% else %}
-        <form action="/prevcard">
-            <button>Prev Card</button>
-        </form>
-        <form action="/nextcard">
-            <button>Next Card</button>
-        </form>
-    <form action="/">
-            <button>End Game</button>
-        </form>
+    {% if card %}
 
     <div class="card">
         <div class="text">
@@ -27,10 +15,28 @@
             <p class="">{{ card.oracle_text }}</p>
             <p class="">{{ card.chaos_text }}</p>
         </div>
-        <div class="">
-            <img class="rotate" src="{{ card.image['border_crop'] }}">
+        <div class="card_img">
+            <img src="{{ card.image['border_crop'] }}">
+        </div>
+        <div class="card_nav">
+            <form action="/prevcard">
+                <button class="btn btn_prev"><<</button>
+            </form>
+            <form action="/nextcard">
+                <button class="btn btn_next">>></button>
+            </form>
         </div>
     </div>
+
+    {% else %}
+        <h4>There are no Cards.</h4>
     {% endif %}
+     <form action="/">
+        <button>End Game</button>
+    </form>
+    <p>{{ result }}</p>
+    <form action="/dice" method="POST">
+        <button class="btn">ROLL THE DICE</button>
+    </form>
 </div>
 {% endblock %}
