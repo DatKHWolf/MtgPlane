@@ -58,8 +58,8 @@ def prev_card():
 
 @app.route("/dice", methods=['POST'])
 def roll_dice():
-    value = randint(1, 6)       #Planechase Würfel..
-    return render_template('play.html', result=value, card=my_planes.current_card())
+    dice_value = randint(1, 6)       #Planechase Würfel..
+    return render_template('play.html', card=my_planes.current_card(), result=dice_value)
 
 
 if __name__ == '__main__':

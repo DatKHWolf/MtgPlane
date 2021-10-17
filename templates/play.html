@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-<div class="content">
+<div class="game content">
     {% if card %}
 
     <div class="card">
@@ -31,15 +31,18 @@
     {% else %}
         <h4>There are no Cards.</h4>
     {% endif %}
-     <form action="/">
-        <button>End Game</button>
-    </form>
-    {% if not result %}
-        <p>0</p>
-    {% endif %}
-        <p>{{ result }}</p>
+
     <form action="/dice" method="POST">
-        <button class="btn">ROLL THE DICE</button>
+        <button class="btn">
+            {% if not result %}
+                roll
+            {% else %}
+                {{ result }}
+            {% endif %}
+        </button>
+    </form>
+    <form action="/">
+        <button>End Game</button>
     </form>
 </div>
 {% endblock %}

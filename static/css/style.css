@@ -6,18 +6,19 @@ body {
     color: #FFFFFF;
     background-color: #17140F;
     text-align: center;
-    overflow: hidden;
 }
 .card_img img {
-    max-width: 100vw;
-    max-height: 80vh;
+    max-width: 95vw;
+    max-height: 60vh;
     margin: 0 auto;
 }
+.game {
+    overflow: hidden;
+}
 .content {
-    padding: 10px;
     margin: auto;
     text-align: center;
-    height: 100vh;
+    height: 80vh;
     width: 100vw;
 }
 .card {
@@ -40,5 +41,4 @@ body {
 }
 .text {
     display: none;
-    padding-bottom: 25px;
 }
